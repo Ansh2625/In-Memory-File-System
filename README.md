@@ -8,4 +8,7 @@ Design and implement a file system that: <br>
 - Allows users to create, delete, and navigate directories. <br>
 - Stores file metadata and simulates basic content handling. <br>
 - Lookup and Traversal should be fast. <br>
-- Built using OOP principle. <br>
+- Built using OOP principle. <br><br>
+
+## Class Diagram <br>
+![Class Diagram](In-Memory-File-System/diagrams/Class_Diagram.png) <br><br>
