@@ -274,8 +274,33 @@ public class FileSystem
 
     
     // Remove a file
-    public void remove(String name){}
+    /*
+        File from current directory can only be removed
+        Empty Folder can be removed, Non empty cannot be        
+    */
+    public void rm(String name)
+    {
+        if(!current.hasChild(name)) // File to be removed not in current folder
+        {
+            System.out.println("No such file or folder: " + name);
+            return;
+        }
 
+        Node node = current.getChild(name);
+
+        if(!node.isFile() && !node.getChildren().isEmpty()) // If a Folder is not empty
+        {
+            System.out.println("Cannot remove non-empty folder: " + name);
+            return;
+        }
+
+        // Remove
+        current.removeChild(name);
+        System.out.println(name + " removed successfully.");
+    }
+
+
+    
     // Print the tree structure of all folders
     public void tree(){}
 
