@@ -300,8 +300,16 @@ public class FileSystem
     }
 
 
-    
-    // Print the tree structure of all folders
-    public void tree(){}
+
+    // Print the tree like structure from the current folder
+    public void tree()
+    {
+        printTree(current,0); // 0 indicates initial depth to be 0
+    }
+
+    public void printTree(Node node, int depth)
+    {
+        
+    }
 
 }
