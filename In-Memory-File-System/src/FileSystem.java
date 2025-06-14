@@ -307,9 +307,22 @@ public class FileSystem
         printTree(current,0); // 0 indicates initial depth to be 0
     }
 
+    // Helper for tree command, recursively with indendation
     public void printTree(Node node, int depth)
     {
-        
+        // Indendation according to depth
+        for(int i=0; i<depth; i++)
+            System.out.println("    "); // 4 sapces per level
+
+        // Print the node name
+        System.out.println(node.getName());
+
+        // If node is a Folder then recurse into its childrens
+        if(!node.isFile())
+        {
+            for(Node child : node.getChildren().values())
+                printTree(child, depth + 1);
+        }
     }
 
 }
