@@ -128,12 +128,23 @@ public class FileSystem
     }
 
 
+
+    // Print the current directory path from root
+    public void pwd()
+    {
+        printPath(root,current,"");
+    }
     
+    // Helper function for pwd
+    public void printPath(Node node, Node target, String path)
+    {
+        
+    }
+
+
     // List all the Folders and File in current Directory
     public void ls(String path){}
 
-    // Print the current directory path from root
-    public void pwd(){}
 
     // Create a file in current directory
     public void touch(String fileName){}
