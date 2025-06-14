@@ -250,10 +250,29 @@ public class FileSystem
     }
 
 
-    
-    // Print the content of a file
-    public void cat(String fileName){}
 
+    // Print the content of a file
+    public void cat(String fileName)
+    {
+        if(!current.hasChild(fileName)) // current folder should have the input file as children
+        {
+            System.out.println("No such file: " + fileName);
+            return;
+        }
+
+        Node node = current.getChild(fileName); 
+
+        if(!node.isFile()) // directory cannot have content
+        {
+            System.out.println(fileName + " is a Directory");
+            return;
+        }
+
+        System.out.println(node.getContent()); // print the content of file
+    }
+
+
+    
     // Remove a file
     public void remove(String name){}
 
