@@ -136,9 +136,29 @@ public class FileSystem
     }
     
     // Helper function for pwd
-    public void printPath(Node node, Node target, String path)
+    public boolean printPath(Node node, Node target, String path)
     {
-        
+        if(node == target) // found current directory 
+        {
+            // if path equals "", it must be root so print /
+            System.out.println(path.equals("")? "/" : path);
+            return true;
+        }
+
+        if(node.isFile()) // Only folders are printed in pwd
+            return false;
+
+        for(Map.Entry<String,Node> entry : node.getChildren().entrySet())
+        {
+            // path can empty initially, if not append to it
+            String newPath = path.equals("")? "/" + entry.getKey() : path + "/" + entry.getKey();
+
+            // Recursively print append further nodes till get target
+            if(printPath(entry.getValue(), target, newPath))
+                return true;
+        }
+
+        return false;
     }
 
 
