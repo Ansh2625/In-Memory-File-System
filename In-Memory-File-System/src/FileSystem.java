@@ -7,12 +7,15 @@ public class FileSystem
     private Node current;
 
 
+
     // Ctor for initialisation
     public FileSystem()
     {
         this.root = new Node("/", false); // root is a Folder
         this.current = root; // Starting from root node
     }
+
+
 
     // Create a Directory
     public void mkdir(String path)
@@ -40,7 +43,16 @@ public class FileSystem
         }
     }
 
+
+
     // Change Directory
+    /*
+        It can be
+        cd /a/b  - Absolute path (move from root)
+        cd b  - Relative path (move from current)
+        cd ..  - Move to parent directory
+        cd /  - Move to root 
+    */
     public void cd(String path)
     {
         Node target = resolvePath(path); // helper method to get the folder
@@ -54,11 +66,45 @@ public class FileSystem
         current = target; // Move the current pointer
     }
 
+    // Finds a node in the given path, handles both absolute and relative path
     public Node resolvePath(String path)
+    {
+        // path can start from root or any directory
+        Node temp = path.startsWith("/")? root : current; 
+
+        // Split the path into folder names
+        String[] parts = path.split("/");
+
+        for(String part : parts)
+        {
+            // ignore "" made via leading /
+            // ignore . , as we need .. for parent directory
+            if(part.isEmpty() || part.equals("."))
+                continue;
+
+            if(part.equals(".."))
+            {
+                // As we do not store parent reference, we need helper to get it
+                temp = findParent(root,temp);
+
+                if(temp == null) // no parent
+                    return null;
+            }
+            else
+            {
+                if(!temp.hasChild(part)) // if no child
+                    return null;
+                temp = temp.getChild(part); // Move to next folder
+            }
+        }
+
+        return temp;
+    }
+
+    public Node findParent(Node root, Node target)
     {
         return null;
     }
-
 
     // List all the Folders and File in current Directory
     public void ls(String path){}
