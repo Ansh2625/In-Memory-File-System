@@ -15,7 +15,30 @@ public class FileSystem
     }
 
     // Create a Directory
-    public void mkdir(String path){}
+    public void mkdir(String path)
+    {
+        // path can be given from root or any other directory
+        Node temp = path.startsWith("/")? root : current;
+
+        // Break path into folder names
+        String[] parts = path.split("/");
+
+        for(String part : parts)
+        {
+            if(part.isEmpty()) // skip "", due to leading /
+                continue;
+
+            // if folder not exists create it and add it 
+            if(!temp.hasChild(part))
+            {
+                Node folder = new Node(part, false); // it is a Folder
+                temp.addChild(part, folder);
+            }
+
+            // Move in to the next folder
+            temp = temp.getChild(part);
+        }
+    }
 
     // Change Directory
     public void cd(String path){}
