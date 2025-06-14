@@ -162,12 +162,27 @@ public class FileSystem
     }
 
 
+    // Create a file in current directory [Hashmap used for constant lookup]
+    public void touch(String fileName)
+    {
+        // if file already exists 
+        if(current.hasChild(fileName))
+        {
+            System.out.println("File already exists: " + fileName);
+            return;
+        }
+
+        // else, create it and as child
+        Node file = new Node(fileName, true); // Is a file
+        current.addChild(fileName, file);
+    }
+
+
+    
     // List all the Folders and File in current Directory
     public void ls(String path){}
 
 
-    // Create a file in current directory
-    public void touch(String fileName){}
 
     // Write into a file
     public void echo(String fileName){}
