@@ -41,7 +41,24 @@ public class FileSystem
     }
 
     // Change Directory
-    public void cd(String path){}
+    public void cd(String path)
+    {
+        Node target = resolvePath(path); // helper method to get the folder
+
+        if(target==null || target.isFile())
+        {
+            System.out.println("Invalid directory: " + path);
+            return;
+        }
+
+        current = target; // Move the current pointer
+    }
+
+    public Node resolvePath(String path)
+    {
+        return null;
+    }
+
 
     // List all the Folders and File in current Directory
     public void ls(String path){}
