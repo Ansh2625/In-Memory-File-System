@@ -219,9 +219,38 @@ public class FileSystem
 
 
 
-    // Write into a file
-    public void echo(String fileName){}
+    // Write into a file [overwrite(>) or append(>>)]
+    public void echo(String content, String fileName, boolean append)
+    {
+        if(current.hasChild(fileName)) // existing file
+        {
+            Node fileNode = current.getChild(fileName);
 
+            if(!fileNode.isFile()) // cannot write in a folder
+            {
+                System.out.println(fileName + " is a Directory");
+                return;
+            }
+
+            if(append)
+            {
+                fileNode.setContent(fileNode.getContent() + content); // append
+            }
+            else
+            {
+                fileNode.setContent(content); // overwrite
+            }
+        }
+        else // File not exists, so create it and add content
+        {
+            Node newFile = new Node(fileName,true); // is a file
+            newFile.setContent(content);
+            current.addChild(fileName, newFile);
+        }
+    }
+
+
+    
     // Print the content of a file
     public void cat(String fileName){}
 
