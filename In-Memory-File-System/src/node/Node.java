@@ -28,6 +28,8 @@ public class Node
     {
         this.name = name;
         this.isFile = isFile;
+        this.symbolicLink = null;
+        this.parent = null;
 
         // File
         if(isFile)
