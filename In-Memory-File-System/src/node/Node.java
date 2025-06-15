@@ -16,6 +16,9 @@ public class Node
     // Only Folder can have children, File cannot
     private Map<String,Node> children;
 
+    // A symbolic link that can point to any node in the file system
+    private Node symbolicLink;
+
     
     // Ctor for initialisation
     public Node(String name, boolean isFile)
@@ -61,6 +64,12 @@ public class Node
         return this.children;
     }
 
+    // Get the Symbolic Link
+    public Node getSymbolicLink()
+    {
+        return this.symbolicLink;
+    }
+
     // Set the content of a file
     public void setContent(String content)
     {
@@ -68,6 +77,12 @@ public class Node
         {
             this.content = content;
         }
+    }
+
+    // Set the Symbolic Link
+    public void setSymbolicLink(Node target)
+    {
+        this.symbolicLink = target;
     }
 
     // Add a children to a folder
