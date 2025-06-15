@@ -1,5 +1,7 @@
 package filesystem;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import node.Node;
 
 public class FileSystem 
@@ -306,12 +308,22 @@ public class FileSystem
     // Print the tree like structure from the current folder
     public void tree()
     {
-        printTree(current,0); // 0 indicates initial depth to be 0
+        Set<Node> visited = new HashSet<>(); // to avoid infinite cycle loop
+        printTree(current,0,visited); // 0 indicates initial depth to be 0
     }
 
     // Helper for tree command, recursively with indendation
-    public void printTree(Node node, int depth)
+    public void printTree(Node node, int depth, Set<Node> visited)
     {
+        // Detect cycle using visited set
+        if(visited.contains(node))
+        {
+            System.out.println("    ".repeat(depth) + node.getName() + " SymbolicLink loop detected");
+            return;
+        }
+
+        visited.add(node);
+
         // Indendation according to depth
         for(int i=0; i<depth; i++)
             System.out.println("    "); // 4 sapces per level
@@ -323,7 +335,13 @@ public class FileSystem
         if(!node.isFile())
         {
             for(Node child : node.getChildren().values())
-                printTree(child, depth + 1);
+            {
+                // If child is a symbolic link, follow the target
+                Node target = (child.getSymbolicLink() != null) ? child.getSymbolicLink() : child;
+
+                // recursive call
+                printTree(child, depth + 1, visited);
+            }
         }
     }
 
