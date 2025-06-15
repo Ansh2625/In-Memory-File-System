@@ -19,6 +19,9 @@ public class Node
     // A symbolic link that can point to any node in the file system
     private Node symbolicLink;
 
+    // Parent pointer
+    private Node parent;
+
     
     // Ctor for initialisation
     public Node(String name, boolean isFile)
@@ -70,6 +73,12 @@ public class Node
         return this.symbolicLink;
     }
 
+    // get parent
+    public Node getParent()
+    {
+        return this.parent;
+    }
+
     // Set the content of a file
     public void setContent(String content)
     {
@@ -83,6 +92,12 @@ public class Node
     public void setSymbolicLink(Node target)
     {
         this.symbolicLink = target;
+    }
+
+    // Set parent
+    public void setParent(Node parent)
+    {
+        this.parent = parent;
     }
 
     // Add a children to a folder
