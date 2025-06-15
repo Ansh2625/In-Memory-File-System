@@ -327,4 +327,30 @@ public class FileSystem
         }
     }
 
+
+
+    // Link - creates a shortcut (symbolic link) to another file or folder.
+    public void ln(String linkName, String targetPath)
+    {
+        // Find the node 
+        Node target = resolvePath(targetPath);
+
+        if(target == null) // no such folder exists 
+        {
+            System.out.println("Invalid target path: " + targetPath);
+            return;
+        }
+
+        if(current.hasChild(linkName)) // if current folder already has it
+        {
+            System.out.println("A file/folder with name " + linkName + " already exists");
+            return;
+        }
+
+        Node link = new Node(linkName, target.isFile()); // mimic it
+        link.setSymbolicLink(target);
+        current.addChild(linkName, link); // add it as child in current folder
+
+        System.out.println("Symbolic link " + linkName + " created to " + targetPath);
+    }
 }
