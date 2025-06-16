@@ -11,7 +11,7 @@ public class Action
     private Node nodeSnapshot; // for restoring deleted node
 
     // Ctor for initialisation
-    private Action(ActionType type, String name)
+    public Action(ActionType type, String name)
     {
         this.type = type;
         this.name = name;
