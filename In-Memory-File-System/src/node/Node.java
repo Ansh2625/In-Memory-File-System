@@ -107,6 +107,7 @@ public class Node
     {
         if(!isFile) // a Folder [File cannot have children]
         {
+            node.setParent(this); // Setting parent
             children.put(name, node);
         }
     }
