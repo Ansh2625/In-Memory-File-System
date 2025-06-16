@@ -335,4 +335,76 @@ public class FileSystem
 
         System.out.println("Symbolic link " + linkName + " created to " + targetPath);
     }
+
+
+
+    // Find command - to find a file or folder in current directory [Pattern Matching]
+    public void find(String pattern)
+    {
+        Set<Node> visited = new HashSet<>(); // to avoid infinite loops
+        dfsFind(current,pattern,visited,getAbsolutePath(current));
+    }
+
+    // dfsFind function
+    private void dfsFind(Node node, String pattern, Set<Node> visited, String pathSoFar)
+    {
+        if (visited.contains(node)) return;
+        visited.add(node);
+
+        String fullPath = pathSoFar.equals("/") ? "/" + node.getName() : pathSoFar + "/" + node.getName();
+
+        // Match current node
+        if (match(node.getName(), pattern)) 
+            System.out.println(fullPath);
+
+        // If its a folder, go deeper
+        if(!node.isFile())
+        {
+            for (Map.Entry<String, Node> entry : node.getChildren().entrySet())
+            {
+                Node child = entry.getValue();
+                Node target = (child.getSymbolicLink() != null) ? child.getSymbolicLink() : child;
+                dfsFind(target, pattern, visited, fullPath);
+            }
+        }
+    }
+
+    // Wildcard pattern match: * means any sequence
+    private boolean match(String text, String pattern) 
+    {
+        return matchHelper(text, pattern, 0, 0);
+    }
+
+    // Match helper function
+    private boolean matchHelper(String text, String pattern, int i, int j)
+    {
+        if (i == text.length() && j == pattern.length())
+            return true;
+
+        if (j == pattern.length())
+             return false;
+
+        if (pattern.charAt(j) == '*') 
+        {
+             // Match zero or more characters: two recursive choices
+            return (i < text.length() && matchHelper(text, pattern, i + 1, j)) || matchHelper(text, pattern, i, j + 1);
+        }
+        else if (i < text.length() && (pattern.charAt(j) == text.charAt(i)))
+        {
+            // Match current character
+            return matchHelper(text, pattern, i + 1, j + 1);
+        }
+
+        return false;
+    }
+
+    // getAbsolutePath function
+    private String getAbsolutePath(Node node) 
+    {
+        if (node == root)
+            return "";
+        
+        return getAbsolutePath(node.getParent()) + "/" + node.getName();
+    }
+
 }
