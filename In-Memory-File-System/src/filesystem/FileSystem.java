@@ -12,6 +12,8 @@ public class FileSystem
     // Current Node
     private Node current;
 
+    // Trie root for autocomplete
+    private TrieNode trieRoot;
 
 
     // Ctor for initialisation
@@ -19,6 +21,7 @@ public class FileSystem
     {
         this.root = new Node("/", false); // root is a Folder
         this.current = root; // Starting from root node
+        this.trieRoot = new TrieNode(); // Initialise Trie root
     }
 
 
@@ -500,4 +503,39 @@ public class FileSystem
         return lps;
     }
 
+
+
+    // Autocomplete method using Trie
+    public void autocomplete(String prefix)
+    {
+        TrieNode node = trieRoot;
+
+        // Traverse to the node matching the prefix
+        for (char ch : prefix.toCharArray())
+        {
+            if (!node.getChildren().containsKey(ch))
+            {
+                System.out.println("No suggestions found.");
+                return;
+            }
+            node = node.getChildren().get(ch);
+        }
+
+        // DFS from the prefix node
+        dfsTrie(node, prefix);
+    }
+
+    // DFS helper to collect suggestions from the trie
+    private void dfsTrie(TrieNode node, String word)
+    {
+        if (node.isEndOfWord())
+        {
+            System.out.println(word);
+        }
+
+        for (Map.Entry<Character, TrieNode> entry : node.getChildren().entrySet())
+        {
+            dfsTrie(entry.getValue(), word + entry.getKey());
+        }
+    }
 }
