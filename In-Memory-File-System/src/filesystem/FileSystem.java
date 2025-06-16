@@ -44,6 +44,7 @@ public class FileSystem
             if(!temp.hasChild(part))
             {
                 Node folder = new Node(part, false); // it is a Folder
+                insertToTrie(part);
                 temp.addChild(part, folder);
             }
 
@@ -150,6 +151,7 @@ public class FileSystem
 
         // else, create it and as child
         Node file = new Node(fileName, true); // Is a file
+        insertToTrie(fileName);
         current.addChild(fileName, file);
     }
 
@@ -537,5 +539,21 @@ public class FileSystem
         {
             dfsTrie(entry.getValue(), word + entry.getKey());
         }
+    }
+
+
+
+    // Helper to insert a word (file/folder name) into Trie
+    private void insertToTrie(String word)
+    {
+        TrieNode node = trieRoot;
+
+        for (char ch : word.toCharArray())
+        {
+            node.getChildren().putIfAbsent(ch, new TrieNode());
+            node = node.getChildren().get(ch);
+        }
+
+        node.setEndOfWord(true);
     }
 }
