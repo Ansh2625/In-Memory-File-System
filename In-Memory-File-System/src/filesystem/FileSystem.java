@@ -293,11 +293,7 @@ public class FileSystem
         visited.add(node);
 
         // Indendation according to depth
-        for(int i=0; i<depth; i++)
-            System.out.println("    "); // 4 sapces per level
-
-        // Print the node name
-        System.out.println(node.getName());
+        System.out.println("    ".repeat(depth) + node.getName());
 
         // If node is a Folder then recurse into its childrens
         if(!node.isFile())
