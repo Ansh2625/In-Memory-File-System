@@ -2,6 +2,8 @@ package filesystem;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
+
 import node.Node;
 
 public class FileSystem 
@@ -14,6 +16,12 @@ public class FileSystem
 
     // Trie root for autocomplete
     private TrieNode trieRoot;
+
+    // Stack for undo
+    private Stack<Action> undoStack = new Stack<>();
+
+    // Stack for redo
+    private Stack<Action> redoStack = new Stack<>();
 
 
     // Ctor for initialisation
