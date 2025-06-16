@@ -161,6 +161,10 @@ public class FileSystem
         Node file = new Node(fileName, true); // Is a file
         insertToTrie(fileName);
         current.addChild(fileName, file);
+
+        // Push to undo stack
+        undoStack.push(new Action(Action.ActionType.TOUCH, fileName));
+        redoStack.clear(); // Clear redo stack on new action
     }
 
 
