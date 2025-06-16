@@ -90,8 +90,8 @@ public class FileSystem
 
             if(part.equals(".."))
             {
-                // As we do not store parent reference, we need helper to get it
-                temp = findParent(root,temp);
+                // We have parent reference
+                temp = temp.getParent();
 
                 if(temp == null) // no parent
                     return null;
@@ -105,30 +105,6 @@ public class FileSystem
         }
 
         return temp;
-    }
-
-    // Helper function to get parent for a target node [DFS in Tree]
-    public Node findParent(Node root, Node target)
-    {
-        // a file cannot be a parent
-        if(root==null || root.isFile())
-            return null;
-
-        // Go to each child of current root
-        for(Map.Entry<String,Node> entry : root.getChildren().entrySet())
-        {
-            // if any child of root is same object as target, we found it
-            if(entry.getValue() == target)
-                return root;
-
-            // Recursively find the target
-            Node found = findParent(entry.getValue(), target);
-            
-            if(found != null)
-                return found;
-        }
-
-        return null;
     }
 
 
