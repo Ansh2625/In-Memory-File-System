@@ -25,6 +25,14 @@ public class Action
         this.nodeSnapshot = nodeSnapshot;
     }
 
+    public Action(ActionType type, String name, Node nodeSnapshot) 
+    {
+        this.type = type;
+        this.name = name;
+        this.nodeSnapshot = nodeSnapshot;
+    }
+
+
      // Getters
     public ActionType getType()
     {

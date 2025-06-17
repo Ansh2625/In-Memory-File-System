@@ -295,6 +295,7 @@ public class FileSystem
 
         // Remove
         current.removeChild(name);
+        undoStack.push(new Action(Action.ActionType.RM, name,node));
         System.out.println(name + " removed successfully.");
     }
 
