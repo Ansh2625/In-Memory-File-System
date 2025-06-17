@@ -301,7 +301,8 @@ public class FileSystem
 
         // Remove
         current.removeChild(name);
-        undoStack.push(new Action(Action.ActionType.RM, name,node));
+        undoStack.push(new Action(Action.ActionType.RM, name, null, node));
+        redoStack.clear();
         System.out.println(name + " removed successfully.");
     }
 
