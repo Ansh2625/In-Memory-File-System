@@ -55,11 +55,14 @@ public class Main
                 case "echo":
                     String[] echoParts = argument.split(">>|>", 2);
                     boolean append = argument.contains(">>");
+
                     if (echoParts.length == 2) 
                     {
                         String content = echoParts[0].trim();
                         String filename = echoParts[1].trim();
-                        invoker.setCommand(new EchoCommand(fileSystem, filename, content, append));
+
+                        // Correct argument order
+                        invoker.setCommand(new EchoCommand(fileSystem, content, filename, append));
                     } 
                     else 
                     {
