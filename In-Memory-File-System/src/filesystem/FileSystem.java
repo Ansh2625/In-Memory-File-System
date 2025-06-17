@@ -568,4 +568,64 @@ public class FileSystem
 
         node.setEndOfWord(true);
     }
+
+
+
+    // Undo method
+    public void undo()
+    {
+        if (undoStack.isEmpty())
+        {
+            System.out.println("Nothing to undo.");
+            return;
+        }
+
+        Action action = undoStack.pop();
+        String name = action.getName();
+
+        switch(action.getType())
+        {
+            case TOUCH:
+                Node touchedFile = current.getChild(name);
+                if (touchedFile != null && touchedFile.isFile())
+                {
+                    current.removeChild(name);
+                    redoStack.push(action);
+                    System.out.println("Undo touch: " + name);
+                }
+                break;
+
+            // others
+        }
+    }
+
+
+
+    // Redo Method
+    public void redo()
+    {
+        if (redoStack.isEmpty())
+        {
+            System.out.println("Nothing to redo.");
+            return;
+        }
+
+        Action action = redoStack.pop();
+        String name = action.getName();
+
+        switch(action.getType())
+        {
+            case TOUCH:
+                if (!current.hasChild(name))
+                {
+                    Node file = new Node(name, true);
+                    current.addChild(name, file);
+                    undoStack.push(action);
+                    System.out.println("Redo touch: " + name);
+                }
+                break;
+            
+            // others
+        }
+    }
 }
