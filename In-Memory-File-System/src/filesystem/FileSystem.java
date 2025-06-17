@@ -221,6 +221,7 @@ public class FileSystem
     // Write into a file [overwrite(>) or append(>>)]
     public void echo(String content, String fileName, boolean append)
     {
+        String beforeContent = "";
         if(current.hasChild(fileName)) // existing file
         {
             Node fileNode = current.getChild(fileName);
@@ -230,6 +231,8 @@ public class FileSystem
                 System.out.println(fileName + " is a Directory");
                 return;
             }
+
+            beforeContent = fileNode.getContent();
 
             if(append)
             {
@@ -246,6 +249,9 @@ public class FileSystem
             newFile.setContent(content);
             current.addChild(fileName, newFile);
         }
+
+        undoStack.push(new Action(Action.ActionType.ECHO, fileName, beforeContent, null));
+        redoStack.clear();
     }
 
 
