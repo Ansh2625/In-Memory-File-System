@@ -613,7 +613,27 @@ public class FileSystem
                 }
                 break;
 
-            // others
+            case MKDIR:
+                Node dir = resolvePath(name);
+                if (dir != null && !dir.isFile() && dir.getChildren().isEmpty()) {
+                    dir.getParent().removeChild(dir.getName());
+                    redoStack.push(action);
+                    System.out.println("Undo mkdir: " + name);
+                }
+                break;
+
+            case RM:
+                current.addChild(name, action.getNodeSnapshot());
+                redoStack.push(action);
+                System.out.println("Undo rm: " + name);
+                break;
+
+            case ECHO:
+                Node file = current.getChild(name);
+                if (file != null) file.setContent(action.getContentBefore());
+                redoStack.push(action);
+                System.out.println("Undo echo: " + name);
+                break;
         }
     }
 
@@ -643,7 +663,22 @@ public class FileSystem
                 }
                 break;
             
-            // others
+            case MKDIR:
+                mkdir(name);
+                break;
+
+            case RM:
+                current.removeChild(name);
+                undoStack.push(action);
+                System.out.println("Redo rm: " + name);
+                break;
+
+            case ECHO:
+                Node echoFile = current.getChild(name);
+                if (echoFile != null) echoFile.setContent(action.getContentBefore());
+                undoStack.push(action);
+                System.out.println("Redo echo: " + name);
+                break;
         }
     }
 }
