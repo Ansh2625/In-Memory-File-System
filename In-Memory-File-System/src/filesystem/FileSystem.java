@@ -221,36 +221,28 @@ public class FileSystem
     // Write into a file [overwrite(>) or append(>>)]
     public void echo(String content, String fileName, boolean append)
     {
-        String beforeContent = "";
-        if(current.hasChild(fileName)) // existing file
-        {
-            Node fileNode = current.getChild(fileName);
+        Node file = current.getChild(fileName);
+        String oldContent = "";
 
-            if(!fileNode.isFile()) // cannot write in a folder
-            {
-                System.out.println(fileName + " is a Directory");
-                return;
-            }
-
-            beforeContent = fileNode.getContent();
-
-            if(append)
-            {
-                fileNode.setContent(fileNode.getContent() + content); // append
-            }
-            else
-            {
-                fileNode.setContent(content); // overwrite
-            }
-        }
-        else // File not exists, so create it and add content
-        {
-            Node newFile = new Node(fileName,true); // is a file
-            newFile.setContent(content);
-            current.addChild(fileName, newFile);
+        if (file == null) {
+            file = new Node(fileName, true); // create new file
+            current.addChild(fileName, file);
         }
 
-        undoStack.push(new Action(Action.ActionType.ECHO, fileName, beforeContent, null));
+        if (!file.isFile()) {
+            System.out.println(fileName + " is not a file.");
+            return;
+        }
+
+        oldContent = file.getContent(); // before writing
+
+        if (append)
+            file.setContent(oldContent + content);
+        else
+            file.setContent(content);
+
+        // Push action to undo stack (with full constructor)
+        undoStack.push(new Action(Action.ActionType.ECHO, fileName, oldContent, null));
         redoStack.clear();
     }
 
