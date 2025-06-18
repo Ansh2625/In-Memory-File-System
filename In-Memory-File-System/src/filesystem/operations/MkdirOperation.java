@@ -38,7 +38,6 @@ public class MkdirOperation implements FileSystemOperation
             if(!temp.hasChild(part))
             {
                 Node folder = new Node(part, false); // it is a Folder
-                folder.setParent(temp);
                 temp.addChild(part, folder);
                 helper.insertToTrie(part);
                 created.push(part); // track for undo

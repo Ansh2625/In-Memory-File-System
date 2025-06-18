@@ -30,18 +30,8 @@ public class Node
         this.isFile = isFile;
         this.symbolicLink = null;
         this.parent = null;
-
-        // File
-        if(isFile)
-        {
-            this.content = ""; // may have content
-            this.children = null; // no children 
-        }
-        else // Folder
-        {
-            this.content = null; // no content
-            this.children = new HashMap<>(); // may have children
-        }
+        this.content = isFile ? "" : null;
+        this.children = isFile ? null : new HashMap<>();
     }
 
 

@@ -24,7 +24,7 @@ public class FindOperation implements FileSystemOperation
         Helper helper = new Helper(state);
 
         Set<Node> visited = new HashSet<>(); // to avoid infinite loops
-        dfsFind(state.getCurrent(),pattern,visited,helper.getAbsolutePath(state.getCurrent()));
+        dfsFind(state.getCurrent(), pattern, visited, helper.getAbsolutePath(state.getCurrent()));
     }
 
     // dfsFind function
@@ -34,7 +34,7 @@ public class FindOperation implements FileSystemOperation
         visited.add(node);
 
         String fullPath = pathSoFar.equals("/") ? "/" + node.getName() : pathSoFar + "/" + node.getName();
-
+        
         // Match current node
         if (match(node.getName(), pattern)) 
             System.out.println(fullPath);

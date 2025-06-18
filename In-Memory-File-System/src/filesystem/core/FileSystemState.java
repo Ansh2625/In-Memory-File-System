@@ -10,7 +10,7 @@ public class FileSystemState
     private Node current = root;
     private Stack<Action> undoStack = new Stack<>();
     private Stack<Action> redoStack = new Stack<>();
-    private TrieNode trieRoot;
+    private TrieNode trieRoot = new TrieNode();
 
     // Accessors
 

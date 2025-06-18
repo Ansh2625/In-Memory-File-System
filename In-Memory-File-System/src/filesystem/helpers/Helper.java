@@ -10,7 +10,7 @@ public class Helper
 
     public Helper(FileSystemState state)
     {
-        this.state = new FileSystemState();
+        this.state = state;
     }
     
     // Helper to insert a word (file/folder name) into Trie
@@ -31,37 +31,35 @@ public class Helper
     // Finds a node in the given path, handles both absolute and relative path
     public Node resolvePath(String path)
     {
-        // path can start from root or any directory
-        Node temp = path.startsWith("/")? state.getRoot() : state.getCurrent(); 
-
-        // Split the path into folder names
+        Node temp = path.startsWith("/") ? state.getRoot() : state.getCurrent();
         String[] parts = path.split("/");
 
         for(String part : parts)
         {
-            // ignore "" made via leading /
-            // ignore . , as we need .. for parent directory
             if(part.isEmpty() || part.equals("."))
                 continue;
 
             if(part.equals(".."))
             {
-                // We have parent reference
                 temp = temp.getParent();
-
-                if(temp == null) // no parent
+                if(temp == null)
                     return null;
             }
             else
             {
-                if(!temp.hasChild(part)) // if no child
+                Node next = temp.getChild(part);
+                if (next == null)
+                {
+                    System.out.println("Invalid directory: " + part);
                     return null;
-                temp = temp.getChild(part); // Move to next folder
+                }
+                temp = next;
             }
         }
 
         return temp;
     }
+
 
 
     // getAbsolutePath function

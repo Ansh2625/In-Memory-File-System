@@ -47,7 +47,7 @@ public class FileSystem
 
     public TrieNode getTrieRoot()
     {
-        return this.getTrieRoot();
+        return state.getTrieRoot();
     }
 
 
