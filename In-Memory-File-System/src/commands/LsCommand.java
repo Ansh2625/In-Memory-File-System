@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.LsOperation;
 
 public class LsCommand implements Command
 {
@@ -16,6 +17,6 @@ public class LsCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.ls(path);
+        fileSystem.executeOperation(new LsOperation(path));
     }  
 }

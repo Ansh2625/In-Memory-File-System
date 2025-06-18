@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.MkdirOperation;
 
 public class MkdirCommand implements Command
 {
@@ -16,6 +17,6 @@ public class MkdirCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.mkdir(path);
+        fileSystem.executeOperation(new MkdirOperation(path));
     }
 }

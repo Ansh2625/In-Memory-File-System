@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.CatOperation;
 
 public class CatCommand implements Command
 {
@@ -16,6 +17,6 @@ public class CatCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.cat(fileName);
+        fileSystem.executeOperation(new CatOperation(fileName));    
     }
 }

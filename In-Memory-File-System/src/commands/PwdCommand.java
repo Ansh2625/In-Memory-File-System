@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.PwdOperation;
 
 public class PwdCommand implements Command
 {
@@ -14,6 +15,6 @@ public class PwdCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.pwd();
+        fileSystem.executeOperation(new PwdOperation());
     } 
 }

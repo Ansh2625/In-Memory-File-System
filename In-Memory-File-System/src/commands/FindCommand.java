@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.FindOperation;
 
 public class FindCommand implements Command
 {
@@ -16,6 +17,6 @@ public class FindCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.find(pattern);
+        fileSystem.executeOperation(new FindOperation(pattern));
     }
 }

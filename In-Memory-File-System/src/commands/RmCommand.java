@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.RmOperation;
 
 public class RmCommand implements Command
 {
@@ -16,6 +17,6 @@ public class RmCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.rm(name);
+        fileSystem.executeOperation(new RmOperation(name));
     }
 }

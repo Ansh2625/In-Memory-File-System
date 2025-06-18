@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.UndoOperation;
 
 public class UndoCommand implements Command
 {
@@ -14,6 +15,6 @@ public class UndoCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.undo();
+        fileSystem.executeOperation(new UndoOperation());
     }
 }

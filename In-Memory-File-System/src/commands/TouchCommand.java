@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.TouchOperation;
 
 public class TouchCommand implements Command
 {
@@ -15,6 +16,6 @@ public class TouchCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.touch(fileName);
+        fileSystem.executeOperation(new TouchOperation(fileName));
     } 
 }

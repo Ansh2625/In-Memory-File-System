@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.RedoOperation;
 
 public class RedoCommand implements Command
 {
@@ -14,6 +15,6 @@ public class RedoCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.redo();
+        fileSystem.executeOperation(new RedoOperation());
     }
 }

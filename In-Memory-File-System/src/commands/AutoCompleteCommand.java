@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.AutoCompleteOperation;
 
 public class AutoCompleteCommand implements Command
 {
@@ -15,6 +16,6 @@ public class AutoCompleteCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.autocomplete(prefix);
+        fileSystem.executeOperation(new AutoCompleteOperation(prefix));
     }
 }

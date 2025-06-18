@@ -1,6 +1,7 @@
 package commands;
 
 import filesystem.FileSystem;
+import filesystem.operations.LnOperation;
 
 public class LnCommand implements Command
 {
@@ -19,6 +20,6 @@ public class LnCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.ln(linkName, targetPath);
+        fileSystem.executeOperation(new LnOperation(linkName, targetPath));
     }
 }

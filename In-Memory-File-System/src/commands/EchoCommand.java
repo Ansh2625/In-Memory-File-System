@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.EchoOperation;
 
 public class EchoCommand implements Command
 {
@@ -20,6 +21,6 @@ public class EchoCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.echo(content, fileName, append);
+        fileSystem.executeOperation(new EchoOperation(content, fileName, append));
     }
 }

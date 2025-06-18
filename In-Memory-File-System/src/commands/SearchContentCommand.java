@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.SearchOperation;
 
 public class SearchContentCommand implements Command
 {
@@ -16,6 +17,6 @@ public class SearchContentCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.searchContent(pattern);
+        fileSystem.executeOperation(new SearchOperation(pattern));
     }    
 }

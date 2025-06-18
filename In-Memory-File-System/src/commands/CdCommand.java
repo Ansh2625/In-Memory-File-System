@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.CdOperation;
 
 public class CdCommand implements Command
 {
@@ -16,6 +17,6 @@ public class CdCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.cd(path);
+        fileSystem.executeOperation(new CdOperation(path));
     }    
 }

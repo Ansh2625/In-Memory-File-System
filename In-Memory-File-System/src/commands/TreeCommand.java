@@ -1,5 +1,6 @@
 package commands;
 import filesystem.FileSystem;
+import filesystem.operations.TreeOperation;
 
 public class TreeCommand implements Command
 {
@@ -14,6 +15,6 @@ public class TreeCommand implements Command
     @Override
     public void execute()
     {
-        fileSystem.tree();
+        fileSystem.executeOperation(new TreeOperation());
     }
 }
