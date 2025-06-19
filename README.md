@@ -66,3 +66,35 @@ Design and implement a file system that: <br>
     New commands can be added without modifying existing code – just create a new `Command` + corresponding `Operation` class. <br>
 - **Immutability & Encapsulation** <br>
     Classes like `Node` restrict direct external modification through proper getter/setter encapsulation. <br><br>
+
+## How to Run <br>
+
+1. **Prerequisites**: <br>
+- Java 17 or later installed. <br>
+- VS Code (recommended) or any Java-supported IDE. <br>
+
+2. **Clone the Repository**: <br>
+```bash
+git clone https://github.com/Ansh2625/In-Memory-File-System 
+cd In-Memory-File-System
+``` 
+
+3. **Import the Project**: <br>
+- Open VS Code. <br>
+- Select ```File > Open``` and choose the project's root folder (In-Memory-File-System). <br>
+
+4. **Build the Project**: <br>
+- Open ```Main.java``` file inside src. <br>
+- Click the Run button on top, or right-click and choose Run java. <br>
+
+5. **Run the Application**: <br>
+- Right-click on ```Main.java```. <br>
+- Alternatively, use the terminal: <br>
+```bash
+javac -d bin src/Main.java 
+java -cp bin Main
+```
+
+6. **Interact with the System**: <br>
+The system simulates in-memory file system operations.
+Check console logs for actions like file/folder creation, navigation, content manipulation, search, and undo/redo execution. <br><br>
