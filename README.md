@@ -28,9 +28,9 @@ Design and implement a file system that: <br>
 - **operations package** <br>
     - `FileSystemOperation.java`: Interface representing a file system operation. <br>
     - `MkdirOperation.java`, `CdOperation.java`, `TouchOperation.java`, etc: Each class implements the `FileSystemOperation.java` interface to encapsulate a specific file system behavior (like creating directories, changing directories, file creation, content writing, deletion, etc.). These operations modify the file system state and support undo/redo functionality. <br>
-- `FileSystem.java`: Core class that maintains the reference to the current file system state. Provides methods to get/set current directory, root node, and manages undo/redo stacks. Executes operations via the `FileSystemOperation.java` interface, acting as the central orchestrator of all file system changes. <br>
-- `Action.java`: Represents a reversible operation for supporting undo/redo functionality.
-- `TrieNode.java`: Represents a node in a trie (prefix tree) structure used for efficient file/folder name search. Each node maintains its children and a flag to mark the end of a word. Supports auto-complete and fast lookup features within the file system. <br>
+    - `FileSystem.java`: Core class that maintains the reference to the current file system state. Provides methods to get/set current directory, root node, and manages undo/redo stacks. Executes operations via the `FileSystemOperation.java` interface, acting as the central orchestrator of all file system changes. <br>
+    - `Action.java`: Represents a reversible operation for supporting undo/redo functionality.
+    - `TrieNode.java`: Represents a node in a trie (prefix tree) structure used for efficient file/folder name search. Each node maintains its children and a flag to mark the end of a word. Supports auto-complete and fast lookup features within the file system. <br>
 
 ### node package <br>
 - `Node.java`: Core building block of the in-memory file system. Represents both files and folders using a unified structure. Each node stores metadata such as name, content (for files), child nodes (for directories), parent reference, and optional symbolic link support. <br>
