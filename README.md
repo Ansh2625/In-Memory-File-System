@@ -98,3 +98,6 @@ java -cp bin Main
 6. **Interact with the System**: <br>
 The system simulates in-memory file system operations.
 Check console logs for actions like file/folder creation, navigation, content manipulation, search, and undo/redo execution. <br><br>
+
+## Test Run <br>
+- **Input File**: [Testcase.txt](./Testcase.txt)<br>
