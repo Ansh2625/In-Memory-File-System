@@ -1,0 +1,72 @@
+# --------------------------------------------
+# In-Memory File System - Sample Test Case Script
+# --------------------------------------------
+
+
+Available Commands:
+> mkdir <folder>
+> cd <path>
+> touch <filename>
+> echo <content> > or >> <filename>
+> cat <filename>
+> ls
+> pwd
+> find <name>
+> search <content>
+> ln <linkname> <target>
+> undo
+> redo
+> rm <name>
+> autocomplete <prefix>
+> tree
+> exit
+
+
+# -----------------
+# Test Case Begins
+# -----------------
+
+# Create a folder and navigate into it
+mkdir folder
+cd folder
+
+# Create and edit files
+touch file1.txt
+echo Hello > file1.txt
+echo World >> file1.txt
+
+# View file content
+cat file1.txt
+
+# Create more files
+touch file2.txt
+echo TestContent > file2.txt
+
+# Go back and list contents
+cd ..
+ls
+
+# Symbolic link and traversal
+ln linkToFolder folder
+cd linkToFolder
+ls
+
+# Use search (KMP based) and find (DFS based)
+search Hello
+search Test
+find file2.txt
+find folder
+
+# Show suggestions using Trie for partial file/folder names.
+autocomplete f
+
+# Undo file creation and redo
+undo
+redo
+
+# Remove file and view tree
+rm file1.txt
+tree
+
+# Exit the system
+exit
