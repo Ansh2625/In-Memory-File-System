@@ -50,6 +50,10 @@ public class FileSystem
         return state.getTrieRoot();
     }
 
+    public FileSystemState getState()
+    {
+        return this.state;
+    }
 
     // Execute operation
     public void executeOperation(FileSystemOperation operation)

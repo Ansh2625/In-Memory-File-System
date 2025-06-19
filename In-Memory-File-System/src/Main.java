@@ -2,6 +2,7 @@ import java.util.Scanner;
 import commandinvoker.CommandInvoker;
 import commands.*;
 import filesystem.FileSystem;
+import filesystem.helpers.Helper;
 
 public class Main 
 {
@@ -14,7 +15,8 @@ public class Main
         // Continuosly Take input
         while(true)
         {
-            System.out.print("> ");
+            String currentPath = new Helper(fileSystem.getState()).getAbsolutePath(fileSystem.getCurrent());
+            System.out.print(currentPath + "> ");
             String input = scanner.nextLine().trim();
 
             if(input.equalsIgnoreCase("exit")) // Exit on user input
