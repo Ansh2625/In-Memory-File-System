@@ -40,3 +40,29 @@ Design and implement a file system that: <br>
 
 ## Class Diagram <br>
 ![Class Diagram](In-Memory-File-System/diagrams/Class_Diagram.png) <br><br>
+
+## Concepts Used <br>
+
+### DSA Algorithms & Techniques <br>
+- KMP (Knuth-Morris-Pratt) Pattern Matching <br>
+    Used in the `search` command to efficiently match substrings inside file contents. Built from scratch with custom LPS (Longest Prefix Suffix) construction for optimal linear-time performance. <br>
+- DFS (Depth-First Search) <br>
+    Used in operations like `tree`, `find`, and `search` to recursively traverse the file system hierarchy, exploring all nested directories and files. <br>
+- Trie (Prefix Tree) <br>
+    Used to index file and folder names for fast autocomplete/search functionality (future extension ready). Trie insertion logic is handled during file/folder creation. <br>
+- Stack (Undo/Redo Functionality) <br>
+    Two stacks are used to implement `undo` and `redo` operations, allowing users to reverse or reapply changes with precision. <br>
+- HashSet / HashMap <br>
+    Used for visited tracking in DFS (to prevent infinite cycles) and fast lookups of child nodes in directories. <br>
+
+### Object-Oriented Design Principles <br>
+- Command Pattern <br>
+    Every command (`mkdir`, `cd`, `touch`, `echo`, etc.) implements a common interface (`Command`) and delegates logic to operation classes like `MkdirOperation`, `CdOperation`, etc., encapsulating request execution and promoting extensibility. <br>
+- Separation of Concerns (SOC) <br>
+    Clear separation between command parsing (`CommandInvoker`), execution logic (`FileSystemOperation` classes), and state management (`FileSystemState`). <br>
+- Single Responsibility Principle (SRP) <br>
+    Each class has one focused responsibility. e.g., `Helper` only deals with path resolution and trie updates, `Action` only represents undo/redo state, etc. <br>
+- Open-Closed Principle (OCP) <br>
+    New commands can be added without modifying existing code – just create a new `Command` + corresponding `Operation` class. <br>
+- Immutability & Encapsulation <br>
+    Classes like `Node` restrict direct external modification through proper getter/setter encapsulation. <br><br>
