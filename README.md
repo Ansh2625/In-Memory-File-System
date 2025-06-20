@@ -122,3 +122,6 @@ Check console logs for actions like file/folder creation, navigation, content ma
 - **User & Permissions System**: Add support for multiple users, authentication, and Unix-style permission control (rwx).<br>
 - **Disk Quota Simulation**: Impose limits on storage size per folder/user to mimic real file system constraints.<br>
 - **Timestamps & Metadata**: Store and display creation/modification timestamps for files and directories.<br><br>
+
+## License <br>
+This project is open-source and available under the MIT License. <br><br>
