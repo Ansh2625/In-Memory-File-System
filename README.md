@@ -114,3 +114,11 @@ Check console logs for actions like file/folder creation, navigation, content ma
 - Content Search using KMP: Efficient substring matching in file contents using the Knuth-Morris-Pratt algorithm.<br>
 - Auto-Complete Support: Simulates shell-like suggestions using Trie data structure.<br>
 - Recursive Tree Display: Visualize file structure like tree command in Linux.<br><br>
+
+
+## Future Improvements <br>
+
+- **Persistence Layer**: Integrate file saving/loading functionality using serialization to preserve state across sessions.<br>
+- **User & Permissions System**: Add support for multiple users, authentication, and Unix-style permission control (rwx).<br>
+- **Disk Quota Simulation**: Impose limits on storage size per folder/user to mimic real file system constraints.<br>
+- **Timestamps & Metadata**: Store and display creation/modification timestamps for files and directories.<br><br>
