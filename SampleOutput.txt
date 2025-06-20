@@ -1,0 +1,80 @@
+
+# Create a folder and navigate into it
+> mkdir folder
+> cd folder
+
+
+# Create and edit files
+/folder> touch file1.txt
+/folder> echo Hello > file1.txt
+/folder> echo World >> file1.txt
+
+
+# View file content
+/folder> cat file1.txt
+HelloWorld
+
+
+# Create more files
+/folder> touch file2.txt
+/folder> echo TestContent > file2.txt
+
+
+# Go back and list contents
+/folder> cd ..
+> ls
+folder
+
+
+# Symbolic link and traversal
+> ln linkToFolder folder
+Symbolic link linkToFolder created to folder
+
+
+> cd linkToFolder
+/folder> ls
+file1.txt
+file2.txt
+
+
+# Use search (KMP based) and find (DFS based)
+/folder> search Hello
+/folder/folder/file1.txt
+
+/folder> search Test
+/folder/folder/file2.txt
+
+/folder> find file2.txt
+/folder/folder/file2.txt
+
+/folder> find folder
+/folder/folder
+
+
+# Show suggestions using Trie for partial file/folder names.
+/folder> autocomplete f
+file1.txt
+file2.txt
+folder
+
+
+# Undo file creation and redo
+/folder> undo
+Undo echo: file2.txt
+
+/folder> redo
+Redo echo: file2.txt
+
+
+# Remove file and view tree
+/folder> rm file1.txt
+file1.txt removed successfully.
+
+/folder> tree
+folder
+    file2.txt
+
+
+# Exit the system
+/folder> exit
+Exiting...
