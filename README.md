@@ -102,3 +102,15 @@ Check console logs for actions like file/folder creation, navigation, content ma
 ## Test Run <br>
 - **Input File**: [TestCase.txt](./TestCase.txt)<br>
 - **Output File**: [SampleOutput.txt](./SampleOutput.txt)<br><br>
+
+
+## Features <br>
+
+- In-Memory File System supporting dynamic creation and manipulation of files and directories.<br>
+- Basic UNIX-like Shell Commands: `mkdir`, `cd`, `ls`, `touch`, `echo`, `cat`, `rm`, `tree`, `pwd`, etc.<br>
+- Symbolic Link (`ln`) Support: Create and traverse symbolic links like in Linux.<br>
+- Command Pattern Architecture: Each shell command is modular and follows the command design pattern for extensibility.<br>
+- Undo/Redo Functionality: Supports stepwise rollback or re-application of actions like mkdir, touch, rm, echo.<br>
+- Content Search using KMP: Efficient substring matching in file contents using the Knuth-Morris-Pratt algorithm.<br>
+- Auto-Complete Support: Simulates shell-like suggestions using Trie data structure.<br>
+- Recursive Tree Display: Visualize file structure like tree command in Linux.<br><br>
