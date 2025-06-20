@@ -38,6 +38,12 @@ public class LnOperation implements FileSystemOperation
 
         Node link = new Node(linkName, target.isFile()); // mimic it
         link.setSymbolicLink(target);
+        link.setParent(state.getCurrent());
+        if (!target.isFile()) 
+        {
+            link.setChildren(target.getChildren()); // inherit folder's children
+        }
+
         state.getCurrent().addChild(linkName, link); // add it as child in current folder
 
         System.out.println("Symbolic link " + linkName + " created to " + targetPath);

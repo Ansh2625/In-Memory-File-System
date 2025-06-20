@@ -27,7 +27,19 @@ public class CdOperation implements FileSystemOperation
         Helper helper = new Helper(state);
         Node target = helper.resolvePath(path); // helper method to get the folder
 
-        if(target==null || target.isFile())
+        if(target==null)
+        {
+            System.out.println("Invalid directory: " + path);
+            return;
+        }
+
+        // Dereference symlinks till real folder
+        while (target.getSymbolicLink() != null)
+        {
+            target = target.getSymbolicLink();
+        }
+
+        if (target.isFile())
         {
             System.out.println("Invalid directory: " + path);
             return;

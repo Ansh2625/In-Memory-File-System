@@ -53,8 +53,21 @@ public class Helper
                     System.out.println("Invalid directory: " + part);
                     return null;
                 }
+
+                // Dereference symbolic link while traversing
+                while (next.getSymbolicLink() != null)
+                {
+                    next = next.getSymbolicLink();
+                }
+
                 temp = next;
             }
+        }
+
+        // Final dereference if the resolved path is a symbolic link itself
+        while (temp != null && temp.getSymbolicLink() != null)
+        {
+            temp = temp.getSymbolicLink();
         }
 
         return temp;

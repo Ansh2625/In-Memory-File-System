@@ -56,7 +56,13 @@ public class Node
     // Get all Childrens
     public Map<String,Node> getChildren()
     {
+        if (isFile) return null;
         return this.children;
+    }
+
+    public void setChildren(Map<String, Node> children) 
+    {
+        this.children = children;
     }
 
     // Get the Symbolic Link

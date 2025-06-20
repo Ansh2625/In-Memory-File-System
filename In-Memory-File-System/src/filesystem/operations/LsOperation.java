@@ -40,6 +40,12 @@ public class LsOperation implements FileSystemOperation
             }
         }
 
+        // Keep dereferencing till actual target
+        while (target.getSymbolicLink() != null)
+        {
+            target = target.getSymbolicLink();
+        }
+
         if(target.isFile()) // just print file name
         {
             System.out.println(target.getName());
