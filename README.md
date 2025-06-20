@@ -100,4 +100,4 @@ The system simulates in-memory file system operations.
 Check console logs for actions like file/folder creation, navigation, content manipulation, search, and undo/redo execution. <br><br>
 
 ## Test Run <br>
-- **Input File**: [Testcase.txt](./Testcase.txt)<br>
+- **Input File**: [TestCase.txt](./TestCase.txt)<br>
