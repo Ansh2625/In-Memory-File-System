@@ -101,3 +101,4 @@ Check console logs for actions like file/folder creation, navigation, content ma
 
 ## Test Run <br>
 - **Input File**: [TestCase.txt](./TestCase.txt)<br>
+- **Output File**: [SampleOutput.txt](./SampleOutput.txt)<br><br>
