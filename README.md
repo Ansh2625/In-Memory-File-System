@@ -125,3 +125,6 @@ Check console logs for actions like file/folder creation, navigation, content ma
 
 ## License <br>
 This project is open-source and available under the MIT License. <br><br>
+
+## Author <br>
+Developed by Ansh Sharma. Contact, anshsharma2625@gmail.com. 
